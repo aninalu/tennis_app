@@ -3,23 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}- ATP ranking</title>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
     <style>
         nav a {
             color: #d64161;
-            font-size: 3em;
+            font-size: 2em;
             margin-left: 50px;
             text-decoration: none;
         }
-
-        .book {
-            padding: 20px;
-            margin: 10px;
-            background-color: #f7f4f4;
+        .container {
+            margin: 25px;
+            display: flex;
+            justify-content: center; 
+            text-align: left;           
+        }
+        h1 {
+            color: #701d30;
+            margin: 50px;
+            display: flex;
+            justify-content: center;
         }
 
-        .review {
-                margin-left: 50px;
-                font-size: 20px;
+        label {
+            margin-right: 25px;
+        }
+
+        input {
+            margin: 25px;
+            display: inline-block;
+            float: right;
+        }
+
+        button {
+            float: right;
         }
 
     </style>
@@ -27,7 +51,11 @@
 <body>
     <nav>
         <a href="{{ url_for('index') }}">ATP ranking</a>
-        <a href="{{ url_for('create') }}">Create</a>
+        <a href="{{ url_for('create') }}">Add player</a>
+        <a href="{{ url_for('myplayers') }}">Your players</a>
+        <a href="{{ url_for('register') }}">Register</a>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('logout') }}">Log out</a>
     </nav>
     <hr>
     <div class="content">
